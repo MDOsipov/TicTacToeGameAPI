@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{02C78786-6EE8-4B8C-9763-14A4A1F08317}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{55DC3CE0-95E5-49AC-863F-AE7C34CFE9A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{87B679B8-4C41-499F-8575-3BEDFF28083E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToeGameWebService", "TicTacToeGameWebService\TicTacToeGameWebService.csproj", "{1B0EAA9A-D520-4711-90A2-5170A634F833}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameLogicService", "GameLogicService\GameLogicService.csproj", "{E5C3E955-48BC-4263-AB96-6D232B63EF25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "LoggerService\LoggerService.csproj", "{20562B50-81BA-4F9B-AE77-40D5804EB32A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomExceptions", "CustomExceptions\CustomExceptions.csproj", "{6127B2F9-9A87-4A4D-8CD0-EFF18E31CA89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02C78786-6EE8-4B8C-9763-14A4A1F08317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C78786-6EE8-4B8C-9763-14A4A1F08317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C78786-6EE8-4B8C-9763-14A4A1F08317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C78786-6EE8-4B8C-9763-14A4A1F08317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55DC3CE0-95E5-49AC-863F-AE7C34CFE9A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55DC3CE0-95E5-49AC-863F-AE7C34CFE9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55DC3CE0-95E5-49AC-863F-AE7C34CFE9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55DC3CE0-95E5-49AC-863F-AE7C34CFE9A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87B679B8-4C41-499F-8575-3BEDFF28083E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B679B8-4C41-499F-8575-3BEDFF28083E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B679B8-4C41-499F-8575-3BEDFF28083E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B679B8-4C41-499F-8575-3BEDFF28083E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B0EAA9A-D520-4711-90A2-5170A634F833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0EAA9A-D520-4711-90A2-5170A634F833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0EAA9A-D520-4711-90A2-5170A634F833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0EAA9A-D520-4711-90A2-5170A634F833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5C3E955-48BC-4263-AB96-6D232B63EF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5C3E955-48BC-4263-AB96-6D232B63EF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5C3E955-48BC-4263-AB96-6D232B63EF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5C3E955-48BC-4263-AB96-6D232B63EF25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20562B50-81BA-4F9B-AE77-40D5804EB32A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20562B50-81BA-4F9B-AE77-40D5804EB32A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20562B50-81BA-4F9B-AE77-40D5804EB32A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20562B50-81BA-4F9B-AE77-40D5804EB32A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6127B2F9-9A87-4A4D-8CD0-EFF18E31CA89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6127B2F9-9A87-4A4D-8CD0-EFF18E31CA89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6127B2F9-9A87-4A4D-8CD0-EFF18E31CA89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6127B2F9-9A87-4A4D-8CD0-EFF18E31CA89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0299F7F2-7F26-40E0-932F-839E513A9691}
+	EndGlobalSection
+EndGlobal
