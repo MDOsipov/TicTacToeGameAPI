@@ -13,6 +13,7 @@ namespace Contracts
         void UpdatePoint(Point point);
         Task<Point> GetPointById(int pointId);
         Task<IEnumerable<Point>> GetPoints();
+        Task<bool> PointExists(int pointId);
         Task<bool> IsTherePoint(int x, int y);
         Task<bool> IsTherePointByGameId(int gameId);
         Task<Point> GetLastPointByGameId(int gameId);

@@ -43,8 +43,8 @@ namespace TicTacToeGameWebService.Controllers
             }
             catch (CustomException ex)
             {
-                _logger.LogInfo($"Ok. {ex.Message}");
-                return Ok(ex.Message);
+                _logger.LogInfo($"Bad request. {ex.Message}");
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {
@@ -111,8 +111,8 @@ namespace TicTacToeGameWebService.Controllers
             }
             catch (CustomException ex)
             {
-                _logger.LogInfo($"Ok. {ex.Message}");
-                return Ok(ex.Message);
+                _logger.LogInfo($"Bad request. {ex.Message}");
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {

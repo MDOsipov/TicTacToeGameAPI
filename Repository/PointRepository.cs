@@ -25,30 +25,35 @@ namespace Repository
 
         public async Task<Point> GetLastPointByGameId(int gameId)
         {
-            int maxId = await FindByCondition(p => p.GameId.Equals(gameId)).Select(p => p.Id).MaxAsync();
+            int maxId = await FindByCondition(p => p.GameId.Equals(gameId) && p.StatusId.Equals((int)Enums.Status.Active)).Select(p => p.Id).MaxAsync();
             return await FindByCondition(p => p.Id.Equals(maxId)).FirstOrDefaultAsync();
         }
 
         public async Task<Point> GetPointById(int pointId)
         {
-            return await FindByCondition(p => p.Id.Equals(pointId))
+            return await FindByCondition(p => p.Id.Equals(pointId) && p.StatusId.Equals((int)Enums.Status.Active))
                 .Include(p => p.GameSide)
                 .FirstOrDefaultAsync();    
         }
 
         public async Task<IEnumerable<Point>> GetPoints()
         {
-            return await FindAll().ToListAsync();
+            return await FindByCondition(p => p.StatusId.Equals((int)Enums.Status.Active)).ToListAsync();
         }
 
         public async Task<bool> IsTherePoint(int x, int y)
         {
-            return await FindByCondition(p => p.XValue.Equals(x) && p.YValue.Equals(y)).AnyAsync();  
+            return await FindByCondition(p => p.XValue.Equals(x) && p.YValue.Equals(y) && p.StatusId.Equals((int)Enums.Status.Active)).AnyAsync();  
         }
 
         public async Task<bool> IsTherePointByGameId(int gameId)
         {
-            return await FindByCondition(p => p.GameId.Equals(gameId)).AnyAsync();
+            return await FindByCondition(p => p.GameId.Equals(gameId) && p.StatusId.Equals((int)Enums.Status.Active)).AnyAsync();
+        }
+
+        public async Task<bool> PointExists(int pointId)
+        {
+            return await FindByCondition(p => p.Id.Equals(pointId) && p.StatusId.Equals((int)Enums.Status.Active)).AnyAsync(); 
         }
 
         public void UpdatePoint(Point point)

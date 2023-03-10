@@ -10,7 +10,9 @@ namespace Contracts
     public interface IGameRepository
     {
         Task<bool> AreThereRunningGames();
+        Task<bool> GameExists(int gameId);
         Task<Game> GetRunningGame();
+        Task<Game> GetGameById(int gameId);
         Task<IEnumerable<Game>> GetFinishedGames();
         void AddGame(Game game);
         void UpdateGame(Game game); 

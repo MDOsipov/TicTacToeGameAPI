@@ -52,5 +52,21 @@ namespace Repository
         {
             Update(game);
         }
+
+        public async Task<Game> GetGameById(int gameId)
+        {
+            return await FindByCondition(g => g.Id.Equals(gameId))
+                .Include(g => g.CrossesPlayer)
+                .Include(g => g.NoughtsPlayer)
+                .Include(g => g.WinnerPlayer)
+                .Include(g => g.Points)
+                .Include(g => g.GameStatus)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<bool> GameExists(int gameId)
+        {
+            return await FindByCondition(g => g.Id.Equals(gameId)).AnyAsync();
+        }
     }
 }

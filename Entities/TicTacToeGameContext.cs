@@ -75,11 +75,6 @@ public partial class TicTacToeGameContext : DbContext
             entity.HasOne(d => d.WinnerPlayer).WithMany(p => p.GameWinnerPlayers)
                 .HasForeignKey(d => d.WinnerPlayerId)
                 .HasConstraintName("FK_game_player2");
-
-            entity.HasQueryFilter(g => g.StatusId.Equals((int)Enums.Status.Active));
-            entity.HasQueryFilter(g => g.CrossesPlayer.StatusId.Equals((int)Enums.Status.Active));
-            entity.HasQueryFilter(g => g.NoughtsPlayer.StatusId.Equals((int)Enums.Status.Active));
-           
         });
 
         modelBuilder.Entity<GameSide>(entity =>
@@ -184,8 +179,6 @@ public partial class TicTacToeGameContext : DbContext
                 .HasForeignKey(d => d.StatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_player_status");
-
-            entity.HasQueryFilter(p => p.StatusId.Equals((int)Enums.Status.Active));
         });
 
         modelBuilder.Entity<Point>(entity =>
@@ -219,9 +212,6 @@ public partial class TicTacToeGameContext : DbContext
                 .HasForeignKey(d => d.StatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_point_status");
-
-            entity.HasQueryFilter(p => p.StatusId.Equals((int)Enums.Status.Active));
-            entity.HasQueryFilter(p => p.Game.StatusId.Equals((int)Enums.Status.Active));
         });
 
         modelBuilder.Entity<Status>(entity =>
