@@ -14,6 +14,8 @@ namespace Repository
         private IPlayerRepository _player;
         private IGameRepository _game;
         private IPointRepository _point;
+        private IGameStatusRepository _gameStatus;
+        private IGameSideRepository _gameSide;
 
 
         public RepositoryWrapper(TicTacToeGameContext ticTacToeGameContext)
@@ -54,6 +56,30 @@ namespace Repository
                     _point = new PointRepository(_ticTacToeGameContext);
                 }
                 return _point;
+            }
+        }
+
+        public IGameStatusRepository GameStatus
+        {
+            get
+            {
+                if (_gameStatus is null)
+                {
+                    _gameStatus = new GameStatusRepository(_ticTacToeGameContext);
+                }
+                return _gameStatus;
+            }
+        }
+
+        public IGameSideRepository GameSide
+        {
+            get
+            {
+                if (_gameSide is null)
+                {
+                    _gameSide = new GameSideRepository(_ticTacToeGameContext);
+                }
+                return _gameSide;
             }
         }
 

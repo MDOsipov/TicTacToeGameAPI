@@ -12,5 +12,7 @@ namespace Contracts
         IPlayerRepository Player { get; }
         IGameRepository Game { get; }
         IPointRepository Point { get; }
+        IGameStatusRepository GameStatus { get; }
+        IGameSideRepository GameSide { get; }
     }
 }

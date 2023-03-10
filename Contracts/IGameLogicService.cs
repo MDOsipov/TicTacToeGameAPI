@@ -10,7 +10,7 @@ namespace Contracts
     public interface IGameLogicService
     {
         Task<Game> CreateNewGame(string crossesPlayerName, string noughtPlayerName);
-        Task StopGameExplicitly();
+        Task<Game> StopGameExplicitly();
         Task<Point> MakeAMove(int gameSideId, int x, int y);
         Task<Game?> CheckForGameover();
     }

@@ -31,7 +31,9 @@ namespace Repository
 
         public async Task<Point> GetPointById(int pointId)
         {
-            return await FindByCondition(p => p.Id.Equals(pointId)).FirstOrDefaultAsync();    
+            return await FindByCondition(p => p.Id.Equals(pointId))
+                .Include(p => p.GameSide)
+                .FirstOrDefaultAsync();    
         }
 
         public async Task<IEnumerable<Point>> GetPoints()

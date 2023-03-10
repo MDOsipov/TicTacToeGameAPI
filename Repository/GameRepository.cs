@@ -44,6 +44,7 @@ namespace Repository
                 .Include(g => g.CrossesPlayer)
                 .Include(g => g.NoughtsPlayer)
                 .Include(g => g.Points)
+                .Include(g => g.GameStatus)
                 .FirstOrDefaultAsync();
         }
 

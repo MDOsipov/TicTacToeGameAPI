@@ -8,6 +8,8 @@ using System.Text.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using CustomExceptions;
 using Entities;
+using Entities.DataTransferObjects;
+using AutoMapper;
 
 namespace TicTacToeGameWebService.Controllers
 {
@@ -17,10 +19,13 @@ namespace TicTacToeGameWebService.Controllers
     {
         private readonly IGameLogicService _gameLogicService;
         private readonly ILoggerManager _logger;
-        public GameLogicController(IGameLogicService gameLogicService, ILoggerManager logger)
+        private readonly IMapper _mapper;
+
+        public GameLogicController(IGameLogicService gameLogicService, ILoggerManager logger, IMapper mapper)
         {
             _gameLogicService = gameLogicService;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpPost("CreateNewGame")]
@@ -32,8 +37,9 @@ namespace TicTacToeGameWebService.Controllers
             {
                 Game result = await _gameLogicService.CreateNewGame(participantsNames.CrossesPlayerName, participantsNames.NoughtPlayerName);
 
+                GameDto resultMapped = _mapper.Map<GameDto>(result);    
                 _logger.LogInfo("Created. New game is created");
-                return CreatedAtRoute("GameById", new { gameId = result.Id }, result);                
+                return CreatedAtRoute("GameById", new { gameId = result.Id }, resultMapped);                
             }
             catch (CustomException ex)
             {
@@ -54,10 +60,11 @@ namespace TicTacToeGameWebService.Controllers
 
             try
             {
-                await _gameLogicService.StopGameExplicitly();
+                var stoppedGame = await _gameLogicService.StopGameExplicitly();
 
-                _logger.LogInfo("No content. Currently running game is stopped");
-                return NoContent();
+                GameDto resultMapped = _mapper.Map<GameDto>(stoppedGame);
+                _logger.LogInfo("Ok. Currently running game is stopped");
+                return Ok(resultMapped);
             }
             catch (NoRunningGamesExistException ex)
             {
@@ -93,8 +100,9 @@ namespace TicTacToeGameWebService.Controllers
                 Point newPoint = await _gameLogicService.MakeAMove(moveInfo.GameSideId, moveInfo.X, moveInfo.Y);
                 string side = (int)Enums.GameSide.Crosses == moveInfo.GameSideId ? "cross" : "nought";
 
+                PointDto newPointMapped = _mapper.Map<PointDto>(newPoint);
                 _logger.LogInfo($"Created. New {side} point is created");
-                return CreatedAtRoute("PointById", new { pointId = newPoint.Id }, newPoint);
+                return CreatedAtRoute("PointById", new { pointId = newPoint.Id }, newPointMapped);
             }
             catch (NoRunningGamesExistException ex)
             {
@@ -130,7 +138,9 @@ namespace TicTacToeGameWebService.Controllers
 
                 string gameWinner = game.WinnerPlayer == game.CrossesPlayer ? "Crosses" : "Noughts";
                 _logger.LogInfo($"Ok. {gameWinner} has won");
-                return Ok(game);
+
+                GameDto resultMapped = _mapper.Map<GameDto>(game);
+                return Ok(resultMapped);
             }
             catch (NoRunningGamesExistException ex)
             {

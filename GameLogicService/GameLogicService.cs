@@ -7,12 +7,14 @@ using Contracts;
 using Entities.Models;
 using Entities;
 using CustomExceptions;
+using Entities.DataTransferObjects;
 
 namespace GameLogicService
 {
     public class GameLogicService : IGameLogicService
     {
         private readonly IRepositoryWrapper _repository;
+       
         public GameLogicService(IRepositoryWrapper wrapper)
         {
             _repository = wrapper;
@@ -34,7 +36,7 @@ namespace GameLogicService
             // Save
             await _repository.Save();
             // Return new game object
-            return newGame;
+            return await _repository.Game.GetRunningGame();
         }
 
         public async Task<Point> MakeAMove(int gameSideId, int x, int y)
@@ -62,23 +64,25 @@ namespace GameLogicService
 
             // Add
             _repository.Point.AddPoint(newPoint);
+
             // Save
             await _repository.Save();
             // Return new object
+            newPoint.GameSide = await _repository.GameSide.GetGameSideById(gameSideId);
             return newPoint;
         }
 
-        public async Task StopGameExplicitly()
+        public async Task<Game> StopGameExplicitly()
         {
             // Check if there is a running game
             if (!await _repository.Game.AreThereRunningGames())
                 throw new NoRunningGamesExistException("There are no running games");
 
             // Then get the game
-            var gameToStop = await _repository.Game.GetRunningGame();
-
+            Game gameToStop = await _repository.Game.GetRunningGame();
+           
             // Finish the game
-            await FinishTheGame(gameToStop);
+            return await FinishTheGame(gameToStop);
         }
 
         public async Task<Game?> CheckForGameover()
@@ -117,7 +121,9 @@ namespace GameLogicService
 
             game.EndTime = DateTime.Now;
             game.UpdateDate = DateTime.Now;
-            game.GameStatusId = (int)Enums.GameStatus.Finished;
+
+            // Change game status
+            game.GameStatus = await _repository.GameStatus.GetGameStatusById((int)Enums.GameStatus.Finished);
 
             // Switch game players status to Not Active and set other parameters
             var crossesPlayer = game.CrossesPlayer;
