@@ -26,8 +26,6 @@ namespace TicTacToeGameWebService
                     opt => opt.MapFrom(src => src.WinnerPlayer != null ? src.WinnerPlayer.Name : "No one")
                 );
 
-            CreateMap<Game, GameRawDto>();
-
             CreateMap<Point, PointDto>()
                 .ForMember(dest =>
                     dest.GameSide,

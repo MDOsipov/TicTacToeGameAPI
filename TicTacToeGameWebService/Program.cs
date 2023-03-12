@@ -1,6 +1,7 @@
 using TicTacToeGameAPI.Extensions;
 using Newtonsoft.Json;
 using NLog;
+using Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,5 +36,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MigrateDatabase();
 
 app.Run();
