@@ -73,7 +73,7 @@ namespace TicTacToeGameWebService.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Internal server error. Something went wrong inside CreateNewGame action: {ex.Message}");
+                _logger.LogError($"Internal server error. Something went wrong inside StopGameExplicitly action: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -116,7 +116,7 @@ namespace TicTacToeGameWebService.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Internal server error. Something went wrong inside CreateNewGame action: {ex.Message}");
+                _logger.LogError($"Internal server error. Something went wrong inside MakeAMove action: {ex.Message}");
                 return StatusCode(500, ex.Message);
             }
         }
