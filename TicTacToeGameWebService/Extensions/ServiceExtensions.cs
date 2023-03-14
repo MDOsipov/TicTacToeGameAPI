@@ -5,6 +5,7 @@ using Contracts;
 using Repository;
 using GameLogicService;
 using LoggerService;
+using Microsoft.Extensions.Options;
 
 namespace TicTacToeGameAPI.Extensions
 {
@@ -27,7 +28,12 @@ namespace TicTacToeGameAPI.Extensions
 
             services.AddDbContext<TicTacToeGameContext>(opts => 
                 opts.UseSqlServer(connectionString,
-                options => options.MigrationsAssembly("TicTacToeGameWebService")));
+                sqlServerOptionsAction: sqlOption =>
+                {
+                    sqlOption.MigrationsAssembly("TicTacToeGameWebService");
+                    sqlOption.EnableRetryOnFailure();
+                }
+                ));
         }
         public static void ConfigureLogging(this IServiceCollection services)
         {
