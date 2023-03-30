@@ -5,6 +5,7 @@
 - Сервис реализован на ASP.NET CORE Web API
 - Используется база данных MS SQL Server
 - Для работы с данными применяется Entity Framework Core
+- Сервис и база данных развернуты с помощью сервиса Microsoft Azure, [ссылка на работающий сервис](https://tictactoegamewebservice.azurewebsites.net/swagger/index.html)
 
 ## Начало работы:
 
